@@ -13,9 +13,59 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File as Files;
 use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
+use OpenApi\Annotations as OA;
 
 class ImageController extends Controller
 {
+    /**
+     * Image post.
+     *
+     * @OA\Post(
+     *      path="/api/createImage",
+     *      operationId="ImageCreate",
+     *      summary="Image add",
+     *      tags={"Image Route"},
+     *      security={{ "bearerAuth": {} }},
+     *      @OA\Parameter(
+     *         name="image",
+     *         in="query",
+     *         description="Image name",
+     *         required=true,
+     *         example="Image Name",
+     *         @OA\Schema(type="file")
+     *     ),
+     *     @OA\Parameter(
+     *          name="type",
+     *          in="query",
+     *          description="Brand or Branch",
+     *          required=true,
+     *          example="Brand & Branch Name",
+     *          @OA\Schema(type="string")
+     *      ),
+     *     @OA\Parameter(
+     *           name="nameOfBrand",
+     *           in="query",
+     *           description="Brand",
+     *           required=true,
+     *           example="Brand Name",
+     *           @OA\Schema(type="string")
+     *       ),
+     *     @OA\Parameter(
+     *            name="nameOfBranch",
+     *            in="query",
+     *            description="Branch",
+     *            required=true,
+     *            example="Branch Name",
+     *            @OA\Schema(type="string")
+     *        ),
+     *      @OA\Response(response=200, description="Success!", @OA\JsonContent()),
+     *      @OA\Response(response=401, description="Unauthorized!"),
+     *      @OA\Response(response=422, description="Validation error!", @OA\JsonContent()),
+     * )
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function create(Request $request): JsonResponse
     {
         $validate = Validator::make($request->all(), [
