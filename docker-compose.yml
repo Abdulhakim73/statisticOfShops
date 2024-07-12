@@ -1,0 +1,53 @@
+version: '3.9'
+
+services:
+    php:
+        build:
+            context: '.'
+            dockerfile: 'docker/php/Dockerfile'
+        ports:
+            - "8080:80"
+        restart: always
+        volumes:
+            -  ./docker/php/php.ini:/usr/local/etc/php/conf.d/custom.ini
+            - ./:/var/www/html:rw
+            - ./docker/php/000-default.conf:/etc/apache2/sites-enabled/000-default.conf:ro
+            - ./docker/php/000-default.conf:/etc/apache2/sites-available/000-default.conf:ro
+            - ./docker/php/logs/:/var/log/apache2/:rw
+        networks:
+            - app-network
+    db_shops:
+        image: mariadb
+        restart: always
+        hostname: "db_shops"
+        container_name: "db_shops"
+        ports:
+            - "3346:3306"
+        volumes:
+            - mysql:/var/lib/mysql
+        environment:
+            MARIADB_ROOT_PASSWORD: ${DB_PASSWORD}
+        networks:
+            - app-network
+    # adminer:
+    #     image: adminer
+    #     restart: always
+    #     ports:
+    #         - 8080:8080
+    #     networks:
+    #         - app-network
+    phpmyadmin:
+        image: phpmyadmin
+        restart: always
+        ports:
+            - "6070:80"
+        environment:
+            - PMA_ARBITRARY=1
+        networks:
+            - app-network
+volumes:
+    mysql:
+
+networks:
+    app-network:
+        driver: bridge

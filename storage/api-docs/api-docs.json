@@ -1,0 +1,1059 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Test task API Documentation",
+        "description": "Test task API Documentation Description",
+        "contact": {
+            "name": "Swagger API Team"
+        },
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080/",
+            "description": "Local API server"
+        }
+    ],
+    "paths": {
+        "/api/branches": {
+            "get": {
+                "tags": [
+                    "Branches Routes"
+                ],
+                "summary": "Branches list",
+                "description": "Branches list.",
+                "operationId": "branchList",
+                "responses": {
+                    "200": {
+                        "description": "Success!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized!"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/branch/{id}": {
+            "get": {
+                "tags": [
+                    "Branches Routes"
+                ],
+                "summary": "Branch show",
+                "description": "Branch show.",
+                "operationId": "BranchShow",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Branch id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Branch not found!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized!"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/branch/create": {
+            "post": {
+                "tags": [
+                    "Branches Routes"
+                ],
+                "summary": "Branch Create",
+                "description": "Branch add.",
+                "operationId": "BranchCreate",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Branch",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Branch"
+                    },
+                    {
+                        "name": "brand",
+                        "in": "query",
+                        "description": "Brand",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Brand"
+                    },
+                    {
+                        "name": "region",
+                        "in": "query",
+                        "description": "Region",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Region"
+                    },
+                    {
+                        "name": "district",
+                        "in": "query",
+                        "description": "District",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "District"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized!"
+                    },
+                    "422": {
+                        "description": "Validation error!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/branch/update/{id}": {
+            "put": {
+                "tags": [
+                    "Branches Routes"
+                ],
+                "summary": "Branch update",
+                "description": "Branch update.",
+                "operationId": "BranchUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Branch Id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "143"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Branch",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Branch"
+                    },
+                    {
+                        "name": "brand",
+                        "in": "query",
+                        "description": "Brand",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Brand"
+                    },
+                    {
+                        "name": "region",
+                        "in": "query",
+                        "description": "Region",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Region"
+                    },
+                    {
+                        "name": "district",
+                        "in": "query",
+                        "description": "District",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "District"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized!"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/branch/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Branches Routes"
+                ],
+                "summary": "Branch delete",
+                "description": "Branch delete info.",
+                "operationId": "BranchDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Branch id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "143"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Branch not found!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Delete error!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized!"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/countOfBranch/{brand}": {
+            "get": {
+                "tags": [
+                    "Branches Routes"
+                ],
+                "summary": "find Branch Location Count",
+                "description": "Branch info location and count.",
+                "operationId": "findBranchLocationCount",
+                "parameters": [
+                    {
+                        "name": "brand",
+                        "in": "path",
+                        "description": "Brand",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Brand"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Branch not found!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized!"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/brands": {
+            "get": {
+                "tags": [
+                    "Brands Routes"
+                ],
+                "summary": "Brands list",
+                "description": "Brands list.",
+                "operationId": "brandList",
+                "responses": {
+                    "200": {
+                        "description": "Success!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized!"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/brand/{id}": {
+            "get": {
+                "tags": [
+                    "Brands Routes"
+                ],
+                "summary": "Brand show",
+                "description": "Brand show.",
+                "operationId": "BrandShow",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Brand id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Brand not found!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized!"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/brand/create": {
+            "post": {
+                "tags": [
+                    "Brands Routes"
+                ],
+                "summary": "Brand Create",
+                "description": "Brand add.",
+                "operationId": "BrandCreate",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Brand name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Brand Name"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized!"
+                    },
+                    "422": {
+                        "description": "Validation error!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/brand/update{id}": {
+            "put": {
+                "tags": [
+                    "Brands Routes"
+                ],
+                "summary": "Brand update",
+                "description": "Brand update.",
+                "operationId": "BrandUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Brand id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "143"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Brand name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "New Brand Name"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized!"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/brand/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Brands Routes"
+                ],
+                "summary": "Brand delete",
+                "description": "Brand delete info.",
+                "operationId": "BrandDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Brand id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "143"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Brand not found!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Delete error!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized!"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/getCurrency": {
+            "get": {
+                "tags": [
+                    "CountryCurrency Route"
+                ],
+                "summary": "CountryCurrency list",
+                "description": "Brands list.",
+                "operationId": "CountryCurrencyList",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized!"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/createImage": {
+            "post": {
+                "tags": [
+                    "Image Route"
+                ],
+                "summary": "Image add",
+                "description": "Image post.",
+                "operationId": "ImageCreate",
+                "parameters": [
+                    {
+                        "name": "image",
+                        "in": "query",
+                        "description": "Image name",
+                        "required": true,
+                        "schema": {
+                            "type": "file"
+                        },
+                        "example": "Image Name"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "Brand or Branch",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Brand & Branch Name"
+                    },
+                    {
+                        "name": "nameOfBrand",
+                        "in": "query",
+                        "description": "Brand",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Brand Name"
+                    },
+                    {
+                        "name": "nameOfBranch",
+                        "in": "query",
+                        "description": "Branch",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Branch Name"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized!"
+                    },
+                    "422": {
+                        "description": "Validation error!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "Users Routes"
+                ],
+                "summary": "Users list",
+                "description": "Users list.",
+                "operationId": "usersList",
+                "responses": {
+                    "200": {
+                        "description": "Success!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized!"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/user/{id}": {
+            "get": {
+                "tags": [
+                    "Users Routes"
+                ],
+                "summary": "User show",
+                "description": "User show.",
+                "operationId": "UserShow",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized!"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/user/create": {
+            "post": {
+                "tags": [
+                    "Users Routes"
+                ],
+                "summary": "User Create",
+                "description": "User add.",
+                "operationId": "UserCreate",
+                "parameters": [
+                    {
+                        "name": "phone",
+                        "in": "query",
+                        "description": "Phone number",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "+998977731573"
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "User's password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "123456"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized!"
+                    },
+                    "422": {
+                        "description": "Validation error!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/user/update/{id}": {
+            "put": {
+                "tags": [
+                    "Users Routes"
+                ],
+                "summary": "User update",
+                "description": "User update.",
+                "operationId": "UserUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "2"
+                    },
+                    {
+                        "name": "phone",
+                        "in": "query",
+                        "description": "Phone number",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "+998977731573"
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "User's password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "user12345"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized!"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/user/delete": {
+            "delete": {
+                "tags": [
+                    "Users Routes"
+                ],
+                "summary": "User delete",
+                "description": "User delete info.",
+                "operationId": "UserDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Delete error!",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized!"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "User login",
+                "description": "User login api.",
+                "operationId": "authLogin",
+                "parameters": [
+                    {
+                        "name": "phone",
+                        "in": "query",
+                        "description": "User's phone number",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "+998977731573"
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "User's password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "123456qwe"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success!"
+                    },
+                    "422": {
+                        "description": "Validation error!"
+                    },
+                    "401": {
+                        "description": "Unauthorized!"
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "User logout",
+                "description": "User logout.",
+                "operationId": "userLogout",
+                "responses": {
+                    "200": {
+                        "description": "Success!"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}

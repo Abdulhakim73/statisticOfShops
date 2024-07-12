@@ -1,0 +1,46 @@
+image: lorisleiva/laravel-docker:8.1
+
+stages:
+  - test
+  - deploy
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - vendor/
+    - .env
+
+unit_test:
+  stage: test
+  script:
+    - cp .env.example .env
+    - composer install --prefer-dist --no-interaction --no-progress --no-suggest --no-cache
+    - php artisan key:generate
+    #- vendor/bin/phpunit
+  artifacts:
+    paths:
+      - vendor/
+      - .env
+    expire_in: 5 minutes
+  only:
+    - main
+
+deploy_staging:
+  stage: deploy
+  before_script:
+    - apt-get update -yqq && apt-get install -yqq openssh-client
+    - eval $(ssh-agent -s)
+    - echo "$SSH_STAGING_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - CI_COMMIT_AUTHOR_NAME=$(echo "${CI_COMMIT_AUTHOR}" | sed -e 's/ <.*>//')
+  script:
+    - composer global require laravel/envoy --no-interaction --prefer-dist --quiet
+    - ~/.composer/vendor/bin/envoy run deploy --commit="$CI_COMMIT_SHA" --env=staging
+    - >
+      curl -X POST -H "Content-Type: application/json" -d "{\"chat_id\":\"${TELEGRAM_CHAT_ID}\",\"parse_mode\":\"html\",\"link_preview_options\":{\"is_disabled\":true},\"text\":\"<b>Deployment complete</b> 🚀\\n<b>Commit made by:</b> ${CI_COMMIT_AUTHOR_NAME}\\n<b>Commit message:</b> ${CI_COMMIT_MESSAGE}\\n<b>Repository Name:</b> ${CI_PROJECT_TITLE}\\n<b>Repository:</b> ${CI_PROJECT_URL}\\n<b>See changes:</b> ${CI_PROJECT_URL}/-/commit/${CI_COMMIT_SHA}\"}" https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage
+  environment:
+    name: staging
+    url: https://dukan.al-raqam.com/
+  only:
+    - main
